@@ -40,7 +40,7 @@ foreach($html->find('div[id=lnk01]') as $element) {
 }
 
 // 恋愛運
-foreach($html->find('div[id=lnk02] p') as $element) {
+foreach($html->find('div[id=lnk02] div.mg10a > div.yftn-md00 > p') as $element) {
   $love_text = $element->plaintext;
 }
 
@@ -68,7 +68,7 @@ $text = '総合運: '.$total_text."\r\n".'恋愛運: '.$love_text."\r\n".'金運
 $text .= '仕事運: '.$work_text."\r\n".'ラッキーシンボル'.$simbol_text;
 
 // メールを送る
-if(mail($mail_address, $subject, $text)) {
+if(mb_send_mail($mail_address, $subject, $text)) {
   print "メール送信成功:D";
 } else {
   print "メール送信失敗X(";
